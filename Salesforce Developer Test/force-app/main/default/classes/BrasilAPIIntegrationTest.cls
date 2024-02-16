@@ -22,7 +22,6 @@ public with sharing class BrasilAPIIntegrationTest {
             
             Test.stopTest();
         } catch (Exception e) {
-            System.debug('estourou erro');
             exceptionLaunched = true;
         }
 

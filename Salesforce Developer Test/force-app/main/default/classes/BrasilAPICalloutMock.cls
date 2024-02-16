@@ -1,18 +1,14 @@
 @isTest
 global class BrasilAPICalloutMock implements HttpCalloutMock {
-    global HTTPResponse respond(HTTPRequest req) {
-        
-        HTTPResponse res = new HTTPResponse();
-        
+    global HTTPResponse respond(HTTPRequest req) {        
+        HTTPResponse res = new HTTPResponse();       
         
         String requestUrl = req.getEndpoint();
         Pattern pattern = Pattern.compile('\\d+$');
         Matcher matcher = pattern.matcher(requestUrl);
         Integer year;        
         matcher.find();        
-        year = Integer.valueOf(matcher.group());
-        System.debug('year: ' + year);
-        
+        year = Integer.valueOf(matcher.group());       
 
 
         if ((year >= 1900 && year <= 2199) &&  year != 1 && year != 0) {
@@ -26,9 +22,7 @@ global class BrasilAPICalloutMock implements HttpCalloutMock {
             res.setHeader('Content-Type', 'application/json');
             res.setBody('{"message":"Ano fora do intervalo suportado entre 1900 e 2199.","type":"feriados_range_error","name":"NotFoundError"}');
             res.setStatusCode(404);
-            System.debug('setStatusCodeMock: 404');
         } else if (year == 0) {
-            System.debug('setStatusCodeMock: 500');
             res.setHeader('Content-Type', 'application/json');
             res.setBody('{"message":"Erro ao calcular feriados.","type":"feriados_error","name":"InternalError"}');
             res.setStatusCode(500);

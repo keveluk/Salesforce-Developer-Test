@@ -1,11 +1,5 @@
 @isTest
 private class HolidayRetrievalSchedulerTest {
-    @TestSetup
-    static void makeData(){
-        
-
-    }
-
     @isTest
     static void testScheduleAtJob() {        
         Test.startTest();
@@ -32,14 +26,10 @@ private class HolidayRetrievalSchedulerTest {
 
     @isTest
     static void testExecuteMethod() {
-        // Call the execute method directly
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new BrasilAPICalloutMock());
         HolidayRetrievalScheduler scheduler = new HolidayRetrievalScheduler();
-        scheduler.execute(null); // Pass null for SchedulableContext since it's not used in the method
+        scheduler.execute(null); 
         Test.stopTest();
-
-        // Optionally, add assertions to verify the expected behavior of the execute method
-        // For example, you can verify if the expected debug message is logged or if other logic inside the execute method behaves as expected
     }
 }

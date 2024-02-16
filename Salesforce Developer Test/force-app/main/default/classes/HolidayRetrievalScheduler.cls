@@ -3,8 +3,6 @@ global class HolidayRetrievalScheduler implements Schedulable {
     global void execute(SchedulableContext sc) {
         Integer currentYear = Date.today().year();
         BrasilAPIIntegration.updateNationalHolidays(currentYear);
-
-        System.debug('Holiday retrieval job completed for year ' + currentYear);
     }
 
     public static void Schedule(){
