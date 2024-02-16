@@ -1,0 +1,20 @@
+.holiday-message {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px; 
+}
+.message {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px; 
+}
+.isHolidayCell{
+	color: green;
+}
+
+.align-center{
+	font-weight: bold;
+    text-align: center;
+}

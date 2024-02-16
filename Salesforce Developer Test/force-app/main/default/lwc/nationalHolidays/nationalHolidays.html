@@ -1,0 +1,57 @@
+<template>
+    <lightning-card title="National Holidays" icon-name="standard:event">
+        <template if:true={isHoliday}>
+            <h2 class="holiday-message">TODAY IS HOLIDAY! Enjoy your {holidayName} holiday!</h2>
+        </template>
+        <template if:true={holidays}>
+        <h3 class="message">Table of next holidays</h3>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Holiday Name">Holiday Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Date">Date</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Type">Type</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Countdown">Countdown</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={holidays} for:item="holiday">
+                        <tr key={holiday.Id}>
+                            <td data-label="Holiday Name">
+                                <div class="slds-truncate" title={holiday.Name}>{holiday.Name}</div>
+                            </td>
+                            <td data-label="Date">
+                                <div class="slds-truncate" title={holiday.Date__c}>{holiday.formattedDate}</div>
+                            </td>
+                            <td data-label="Type">
+                                <div class="slds-truncate" title={holiday.Type__c}>{holiday.Type__c}</div>
+                            </td>
+                            <td data-label="Countdown">
+                                <template if:true={holiday.isHoliday}>
+                                    <p class="slds-truncate align-center isHolidayCell">{holiday.countdown}</p>
+                                </template>
+                                <template if:false={holiday.isHoliday}>
+                                    <p class="slds-truncate align-center">{holiday.countdown} days</p>
+                                </template>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+        <template if:false={holidays}>
+            <h1 class="message">NO HOLIDAYS TO SHOW!</h1>
+        </template>
+        <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+        </template>
+    </lightning-card>
+</template>
